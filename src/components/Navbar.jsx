@@ -1,7 +1,8 @@
+import { Table } from "@phosphor-icons/react";
 import React from "react";
-import logo from "../assets/logo/logo.png";
-import { Outlet } from "react-router-dom";
 import { FaWpforms } from "react-icons/fa";
+import { NavLink, Outlet } from "react-router-dom";
+import logo from "../assets/logo/logo.png";
 
 function Navbar() {
   return (
@@ -15,11 +16,22 @@ function Navbar() {
             <h3>Admin Panel</h3>
           </div>
         </div>
-        <nav>
-          <h4 className="text-gray-400">Menu</h4>
-          <ul>
-            <li>Products</li>
-            <li><FaWpforms /> Form</li>
+        <nav className="flex flex-col gap-3">
+          <h4 className="text-[#C3C0C0] font-normal">Menu</h4>
+          <ul className="flex flex-col gap-3 transform translate-x-3 font-medium">
+            <NavLink
+              to={"/"}
+              className={"text-[#C3C0C0] flex items-center gap-2"}
+            >
+              <Table size={22} />
+              Products
+            </NavLink>
+            <NavLink
+              to={"/form"}
+              className={"text-[#C3C0C0] flex items-center gap-2"}
+            >
+              <FaWpforms size={22} /> Form
+            </NavLink>
           </ul>
         </nav>
       </aside>
