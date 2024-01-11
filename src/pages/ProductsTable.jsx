@@ -4,9 +4,8 @@ import { useSelector } from "react-redux";
 
 function ProductsTable() {
   const { data } = useSelector((state) => state.MainRex);
-  console.log(data);
   return (
-    <section className="bg-gray-100 w-full py-20 px-8 flex flex-col gap-9">
+    <section className="bg-gray-100 w-full py-20 px-8 flex flex-col gap-9 max-h-[100vh] overflow-scroll">
       <div className="flex justify-between items-center">
         <h3 className="uppercase font-medium text-[#494949]">Products list</h3>
         <h3>
@@ -29,36 +28,49 @@ function ProductsTable() {
             </div>
           </div>
         </div>
-        <table className="w-full">
-          <thead className="bg-[#2A3042] text-white">
-            <tr>
-              <th className="p-4">Image</th>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Articul</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Discount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.length > 0 ? (
-              data.map((elem) => {
-                return (
-                  <tr>
-                    <th>{elem.id}</th>
-                  </tr>
-                );
-              })
-            ) : (
-              <tr className="bg-[#FFFDFD] text-[#575757]">
-                <th colSpan={100} className="p-4">
-                  No data...
-                </th>
+        <div>
+          <table className="w-full ">
+            <thead className="bg-[#2A3042] text-white">
+              <tr>
+                <th className="p-4">Image</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Articul</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Discount</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.length > 0 ? (
+                data.map((elem) => {
+                  return (
+                    <tr
+                      key={elem.id}
+                      className="bg-white text-center border-b-2"
+                    >
+                      <td className="p-5 w-[120px]">
+                        <figure>
+                          <img src={elem.img} alt="" className="w-[120px]" />
+                        </figure>
+                      </td>
+                      <th>{elem.id}</th>
+                      <td className="w-[300px]">{elem.prodName}</td>
+                      <td>Арт: {elem.art}</td>
+                      <td>{elem.price}</td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr className="bg-[#FFFDFD] text-[#575757]">
+                  <th colSpan={100} className="p-4">
+                    No data...
+                  </th>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );

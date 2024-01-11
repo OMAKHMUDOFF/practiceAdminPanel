@@ -9,7 +9,8 @@ const MainSlice = createSlice({
   initialState: mainData,
   reducers: {
     getApiData: (state, { payload }) => {
-      state = { ...state, data: payload };
+      let { bSellersApi, bOffersApi, goodsApi } = payload;
+      state = { ...state, data: [...bSellersApi, ...bOffersApi, ...goodsApi] };
       return state;
     },
   },
