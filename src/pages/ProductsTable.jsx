@@ -39,6 +39,7 @@ function ProductsTable() {
                 <th>Price</th>
                 <th>Category</th>
                 <th>Discount</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -58,6 +59,16 @@ function ProductsTable() {
                       <td className="w-[300px]">{elem.prodName}</td>
                       <td>Арт: {elem.art}</td>
                       <td>{elem.price}</td>
+                      <td>{elem.category}</td>
+                      <td>{elem.disc}%</td>
+                      <td>
+                        <button className="p-2 px-5 bg-lime-600 mr-3 rounded-lg uppercase text-white">
+                          Edit
+                        </button>
+                        <button className="p-2 px-3 bg-red-600 rounded-lg uppercase text-white">
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   );
                 })
