@@ -1,7 +1,10 @@
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function ProductsTable() {
+  const { data } = useSelector((state) => state.MainRex);
+  console.log(data);
   return (
     <section className="bg-gray-100 w-full py-20 px-8 flex flex-col gap-9">
       <div className="flex justify-between items-center">
@@ -34,9 +37,27 @@ function ProductsTable() {
               <th>Name</th>
               <th>Articul</th>
               <th>Price</th>
+              <th>Category</th>
+              <th>Discount</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {data?.length > 0 ? (
+              data.map((elem) => {
+                return (
+                  <tr>
+                    <th>{elem.id}</th>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr className="bg-[#FFFDFD] text-[#575757]">
+                <th colSpan={100} className="p-4">
+                  No data...
+                </th>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
     </section>
