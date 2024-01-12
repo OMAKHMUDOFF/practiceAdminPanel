@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 function ProductsTable() {
-  const { data } = useSelector((state) => state.MainRex);
+  const { data, crud } = useSelector((state) => state.MainRex);
   return (
     <section className="bg-gray-100 w-full py-20 px-8 flex flex-col gap-9 max-h-[100vh] overflow-scroll">
       <div className="flex justify-between items-center">
@@ -43,17 +43,19 @@ function ProductsTable() {
               </tr>
             </thead>
             <tbody>
-              {data.length > 0 ? (
-                data.map((elem) => {
+              {crud.length > 0 ? (
+                crud.map((elem) => {
                   return (
                     <tr
                       key={elem.id}
                       className="bg-white text-center border-b-2"
                     >
                       <td className="p-5 w-[120px]">
-                        <figure>
+                        {elem.img ? (
                           <img src={elem.img} alt="" className="w-[120px]" />
-                        </figure>
+                        ) : (
+                          "Product photo"
+                        )}
                       </td>
                       <th>{elem.id}</th>
                       <td className="w-[300px]">{elem.prodName}</td>

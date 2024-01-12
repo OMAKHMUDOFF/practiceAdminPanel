@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { sendApi } from "../store/reducers/MainReducers";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function ProductSendForm() {
+  const { crud } = useSelector((state) => state.MainRex);
   const [data, setData] = useState({
     prodName: "",
     price: "",
@@ -11,6 +14,17 @@ function ProductSendForm() {
     category: "",
     disc: "",
   });
+
+  function autoClear() {
+    setData({
+      prodName: "",
+      price: "",
+      brand: "",
+      color: "",
+      category: "",
+      disc: "",
+    });
+  }
 
   const handleGetVal = (e) => {
     setData({
@@ -22,12 +36,9 @@ function ProductSendForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await axios("http://localhost:8000/crud", {
-      method: "post",
-      data: data,
-    });
-    console.log(res.data);
-    // dispatch(sendApi(res.data));
+    let res = await axios.post("http://localhost:8000/crud", { ...data });
+    dispatch(sendApi(res.data));
+    autoClear();
   };
 
   return (
